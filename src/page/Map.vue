@@ -89,6 +89,12 @@ import DrawHelper from "../tools/DrawHelper";
 import ComputeHelper from "../tools/ComputeHelper";
 let map = null;
 
+import zdxmxz from "../assets/geosjon/point/zdxmxz.geojson";
+import zdgnpq from "../assets/geosjon/point/zdgnpq.geojson";
+import zdxmaqkzq from "../assets/geosjon/point/zdxmaqkzq.geojson";
+import zdjsxm from "../assets/geosjon/point/zdjsxm.geojson";
+
+
 // 默认样式
 let defaultStyle = new Style({
   image: new Circle({
@@ -122,22 +128,22 @@ export default {
       layerList: [
         {
           name: "重点建设项目",
-          url: "http://localhost/test/data/geojson/point/zdjsxm.geojson",
+          url: zdjsxm,
           checked: false,
         },
         {
           name: "重点项目选址",
-          url: "http://localhost/test/data/geojson/point/zdxmxz.geojson",
+          url: zdxmxz,
           checked: false,
         },
         {
           name: "重点功能片区",
-          url: "http://localhost/test/data/geojson/point/zdgnpq.geojson",
+          url: zdgnpq,
           checked: false,
         },
         {
           name: "重大项目安全控制区",
-          url: "http://localhost/test/data/geojson/point/zdxmaqkzq.geojson",
+          url: zdxmaqkzq,
           checked: false,
         },
       ],
@@ -229,9 +235,9 @@ export default {
       const vectorLayer = new VectorLayer({
         zIndex: 3,
         source: new VectorSource({
-          projection: "EPSG:3857",
-          url: url, //从文件加载边界等地理信息
-          format: new GeoJSON(),
+          features: new GeoJSON().readFeatures(url, {
+            featureProjection: "EPSG:3857",
+          }),
         }),
         style: defaultStyle,
       });
