@@ -157,6 +157,7 @@ export default {
     };
   },
   mounted() {
+    console.log("init")
     // 设置浮动层
     map = new Map({
       target: "map",
